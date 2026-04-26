@@ -114,7 +114,7 @@ export default function EducationSection() {
         </div>
       )}
 
-      <div ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center [perspective:2000px] overflow-hidden">
+      <div ref={containerRef} className="relative w-full h-screen flex flex-col items-center [perspective:2000px] overflow-hidden pt-8 md:pt-10">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none z-0"
           style={{
@@ -124,11 +124,11 @@ export default function EducationSection() {
           }}
         />
 
-        <div className="absolute top-[8%] w-full text-center z-10 px-4 pointer-events-none">
-          <div className="inline-block px-5 py-1.5 border border-[#00ffcc]/30 bg-[#00ffcc]/10 rounded-full mb-4 backdrop-blur-md">
+        <div className="relative w-full text-center z-30 px-4 pointer-events-none shrink-0">
+          <div className="inline-block px-5 py-1.5 border border-[#00ffcc]/30 bg-[#00ffcc]/10 rounded-full mb-3 md:mb-4 backdrop-blur-md">
             <span className="text-[#00ffcc] font-mono tracking-[0.3em] text-xs font-bold uppercase">Academic Core</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white drop-shadow-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-white drop-shadow-2xl leading-none">
             Education{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-[#a855f7]">
               Record
@@ -136,7 +136,7 @@ export default function EducationSection() {
           </h2>
         </div>
 
-        <div className="education-laptop-wrapper relative w-[92vw] md:w-[75vw] max-w-5xl h-[58vh] md:h-[70vh] mt-[12vh] [perspective:2500px] z-20">
+        <div className="education-laptop-wrapper relative w-[92vw] md:w-[76vw] max-w-5xl h-[58vh] md:h-[62vh] mt-8 md:mt-9 [perspective:2500px] z-20">
           <div className="absolute bottom-0 left-[5%] w-[90%] h-10 md:h-12 bg-zinc-900 border border-zinc-700 rounded-b-3xl shadow-[0_30px_60px_rgba(0,0,0,0.9)] [transform-style:preserve-3d] translate-y-full rotate-x-[80deg] origin-top opacity-80 flex items-center justify-center">
             <div className="w-24 h-1 bg-[#00ffcc]/30 rounded-full shadow-[0_0_10px_#00ffcc]" />
           </div>
