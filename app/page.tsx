@@ -1,5 +1,6 @@
 import AboutSection from "@/components/portfolio/sections/AboutSection";
 import AcademicProjects from "@/components/portfolio/sections/AcademicProjects";
+import ContactSection from "@/components/portfolio/sections/ContactSection";
 import EducationSection from "@/components/portfolio/sections/EducationSection";
 import ExperienceSection from "@/components/portfolio/sections/ExperienceSection";
 import IntroPortalSection from "@/components/portfolio/sections/IntroPortalSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <AcademicProjects />
       <ResearchExperience />
       <EducationSection />
+      <ContactSection />
     </main>
   );
 }

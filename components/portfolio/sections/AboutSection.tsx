@@ -6,6 +6,15 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const roles = ["Robotics Engineer", "AI/ML Developer", "Drone Architect", "IoT Specialist"] as const;
 
+function addRobotEdges(mesh: THREE.Mesh, color = 0x9efcff, opacity = 0.75) {
+  const edges = new THREE.EdgesGeometry(mesh.geometry);
+  const lines = new THREE.LineSegments(
+    edges,
+    new THREE.LineBasicMaterial({ color, transparent: true, opacity })
+  );
+  mesh.add(lines);
+}
+
 export default function AboutSection() {
   const mountRef = useRef<HTMLDivElement>(null);
   const [currentRole, setCurrentRole] = useState(0);
@@ -72,7 +81,7 @@ export default function AboutSection() {
       controls.autoRotate = true;
       controls.autoRotateSpeed = 1.3;
 
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.58);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.76);
       scene.add(ambientLight);
 
       const hemiLight = new THREE.HemisphereLight(0x88fff2, 0x080b12, 0.6);
@@ -86,18 +95,20 @@ export default function AboutSection() {
       dirLight2.position.set(-5, 5, -5);
       scene.add(dirLight2);
 
-      const rimLight = new THREE.PointLight(0x7c3aed, 1.3, 18);
+      const rimLight = new THREE.PointLight(0x7c3aed, 1.9, 20);
       rimLight.position.set(-4, 1.5, -4);
       scene.add(rimLight);
 
-      const fillLight = new THREE.PointLight(0x00ffcc, 1.0, 16);
+      const fillLight = new THREE.PointLight(0x00ffcc, 1.7, 18);
       fillLight.position.set(3.5, -0.8, 4.5);
       scene.add(fillLight);
 
       robotGroup = new THREE.Group();
 
       const bodyMat = new THREE.MeshPhysicalMaterial({
-        color: 0xa7b2c6,
+        color: 0xd8e3f2,
+        emissive: 0x102532,
+        emissiveIntensity: 0.22,
         metalness: 0.96,
         roughness: 0.18,
         clearcoat: 1,
@@ -122,6 +133,7 @@ export default function AboutSection() {
       });
 
       const torso = new THREE.Mesh(new THREE.BoxGeometry(2, 2.5, 1.5), bodyMat);
+      addRobotEdges(torso, 0xb8fff7, 0.72);
       robotGroup.add(torso);
 
       const core = new THREE.Mesh(new THREE.SphereGeometry(0.6, 16, 16), glowMat);
@@ -132,6 +144,7 @@ export default function AboutSection() {
       core.add(coreLight);
 
       head = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.2, 1.4), bodyMat);
+      addRobotEdges(head, 0xb8fff7, 0.78);
       head.position.y = 2;
       robotGroup.add(head);
 
@@ -140,18 +153,22 @@ export default function AboutSection() {
       head.add(visor);
 
       leftHand = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), bodyMat);
+      addRobotEdges(leftHand, 0xb8fff7, 0.7);
       leftHand.position.set(-2.5, 0, 0);
       robotGroup.add(leftHand);
 
       rightHand = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.8, 0.8), bodyMat);
+      addRobotEdges(rightHand, 0xb8fff7, 0.7);
       rightHand.position.set(2.5, 0, 0);
       robotGroup.add(rightHand);
 
       const leftFoot = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 1.2), bodyMat);
+      addRobotEdges(leftFoot, 0xb8fff7, 0.65);
       leftFoot.position.set(-0.8, -2.5, 0);
       robotGroup.add(leftFoot);
 
       const rightFoot = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 1.2), bodyMat);
+      addRobotEdges(rightFoot, 0xb8fff7, 0.65);
       rightFoot.position.set(0.8, -2.5, 0);
       robotGroup.add(rightFoot);
 
@@ -323,7 +340,7 @@ export default function AboutSection() {
 
           <div ref={mountRef} className="absolute inset-0 z-10" />
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#00ffcc] opacity-[0.05] blur-[100px] rounded-full pointer-events-none z-0" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#00ffcc] opacity-[0.1] blur-[100px] rounded-full pointer-events-none z-0" />
 
           <div className="absolute bottom-0 text-center w-full text-zinc-600 font-mono text-xs tracking-widest pointer-events-none z-20 opacity-50">
             [ DRAG TO ROTATE 3D MODEL ]
