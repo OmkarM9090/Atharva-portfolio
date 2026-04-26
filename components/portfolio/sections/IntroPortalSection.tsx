@@ -372,18 +372,45 @@ export default function IntroPortalSection() {
 							<span className="font-mono text-xs md:text-sm tracking-[0.3em] text-[#00ffcc] uppercase">Uplink Established</span>
 						</div>
 
-						
+						<h1 className="reveal-line opacity-0 text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none">
+							Hello World, I am
+						</h1>
 
-						
+						<h2 className="reveal-line opacity-0 mt-2 text-4xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-blue-500 drop-shadow-lg">
+							Atharv Khetle
+						</h2>
 
-						
+						<div className="reveal-line opacity-0 h-10 md:h-14 flex items-center overflow-hidden mt-4 mb-6">
+							<span className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-blue-500">
+								&gt;_ <span className={`transition-opacity duration-300 ease-in-out ${fade ? "opacity-100" : "opacity-0"}`}>{roles[currentRole]}</span>
+							</span>
+							<span className="w-3 h-8 md:h-10 bg-[#00ffcc] ml-2 animate-pulse" />
+						</div>
 
-						
+						<p className="reveal-line opacity-0 max-w-3xl text-zinc-300 text-base md:text-xl font-mono leading-relaxed mb-6 border-l-4 border-[#00ffcc] pl-4 text-left">
+							I build autonomous drones, intelligent robotics, and AI systems that bridge digital intelligence with physical reality.
+						</p>
+
+						<p className="reveal-line opacity-0 text-sm md:text-base font-mono tracking-[0.16em] uppercase text-[#9feede] mb-8">
+							Ready to explore Atharva&apos;s world?
+						</p>
+
+						<div className="reveal-line opacity-0 flex gap-4">
+							<a
+								href="#about"
+								className="px-8 py-3 bg-[#00ffcc]/10 border border-[#00ffcc] text-[#00ffcc] font-mono font-bold uppercase tracking-widest hover:bg-[#00ffcc] hover:text-[#050505] transition-all duration-300 shadow-[0_0_15px_rgba(0,255,204,0.3)]"
+							>
+								Explore Portfolio
+							</a>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			
+			<div className="h-[24vh] flex flex-col items-center justify-center bg-[#050505] font-mono text-zinc-600 border-t border-zinc-900">
+				<div className="w-[1px] h-14 bg-gradient-to-b from-[#00ffcc] to-transparent mb-5" />
+				( Scroll to continue... )
+			</div>
 		</div>
 	);
 }

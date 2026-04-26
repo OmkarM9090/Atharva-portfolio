@@ -52,7 +52,7 @@ export default function AboutSection() {
       cleanRenderer();
 
       scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x050505, 0.05);
+      scene.fog = new THREE.FogExp2(0x050505, 0.028);
 
       camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
       camera.position.set(0, 2, 12);
@@ -61,6 +61,8 @@ export default function AboutSection() {
       renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.18;
       container.appendChild(renderer.domElement);
 
       controls = new OrbitControls(camera, renderer.domElement);
@@ -70,26 +72,53 @@ export default function AboutSection() {
       controls.autoRotate = true;
       controls.autoRotateSpeed = 1.3;
 
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.58);
       scene.add(ambientLight);
 
-      const dirLight = new THREE.DirectionalLight(0x00ffcc, 1);
+      const hemiLight = new THREE.HemisphereLight(0x88fff2, 0x080b12, 0.6);
+      scene.add(hemiLight);
+
+      const dirLight = new THREE.DirectionalLight(0x9efcf0, 1.35);
       dirLight.position.set(5, 5, 5);
       scene.add(dirLight);
 
-      const dirLight2 = new THREE.DirectionalLight(0xa855f7, 0.8);
+      const dirLight2 = new THREE.DirectionalLight(0xa855f7, 1.1);
       dirLight2.position.set(-5, 5, -5);
       scene.add(dirLight2);
 
+      const rimLight = new THREE.PointLight(0x7c3aed, 1.3, 18);
+      rimLight.position.set(-4, 1.5, -4);
+      scene.add(rimLight);
+
+      const fillLight = new THREE.PointLight(0x00ffcc, 1.0, 16);
+      fillLight.position.set(3.5, -0.8, 4.5);
+      scene.add(fillLight);
+
       robotGroup = new THREE.Group();
 
-      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x222222, metalness: 0.8, roughness: 0.2 });
-      const glowMat = new THREE.MeshStandardMaterial({
-        color: 0x00ffcc,
+      const bodyMat = new THREE.MeshPhysicalMaterial({
+        color: 0xa7b2c6,
+        metalness: 0.96,
+        roughness: 0.18,
+        clearcoat: 1,
+        clearcoatRoughness: 0.08,
+      });
+      const glowMat = new THREE.MeshPhysicalMaterial({
+        color: 0x70fff0,
         emissive: 0x00ffcc,
-        emissiveIntensity: 2,
-        metalness: 0.3,
-        roughness: 0.2,
+        emissiveIntensity: 2.8,
+        metalness: 0.58,
+        roughness: 0.08,
+        clearcoat: 1,
+        clearcoatRoughness: 0.05,
+      });
+
+      const visorMat = new THREE.MeshPhysicalMaterial({
+        color: 0x9ef6ff,
+        emissive: 0x00ffcc,
+        emissiveIntensity: 1.5,
+        metalness: 0.6,
+        roughness: 0.15,
       });
 
       const torso = new THREE.Mesh(new THREE.BoxGeometry(2, 2.5, 1.5), bodyMat);
@@ -106,7 +135,7 @@ export default function AboutSection() {
       head.position.y = 2;
       robotGroup.add(head);
 
-      const visor = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.3, 0.2), glowMat);
+      const visor = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.3, 0.2), visorMat);
       visor.position.set(0, 0, 0.7);
       head.add(visor);
 
@@ -136,10 +165,10 @@ export default function AboutSection() {
       }
       particlesGeo.setAttribute("position", new THREE.BufferAttribute(posArray, 3));
       const particlesMat = new THREE.PointsMaterial({
-        size: 0.05,
-        color: 0x00ffcc,
+        size: 0.06,
+        color: 0x6fffe9,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.75,
       });
       particlesMesh = new THREE.Points(particlesGeo, particlesMat);
       scene.add(particlesMesh);
@@ -151,6 +180,7 @@ export default function AboutSection() {
 
         if (robotGroup) {
           robotGroup.position.y = Math.sin(t * 2) * 0.3;
+          robotGroup.rotation.y = Math.sin(t * 0.55) * 0.22;
         }
 
         if (head) {
@@ -171,7 +201,7 @@ export default function AboutSection() {
         }
 
         if (coreLight) {
-          coreLight.intensity = 1 + Math.sin(t * 8) * 0.5;
+          coreLight.intensity = 1.45 + Math.sin(t * 8) * 0.75;
         }
 
         if (particlesMesh) {
@@ -224,7 +254,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-[#050505] text-white flex items-center justify-center relative overflow-hidden font-sans pt-20 pb-10">
+    <section id="about" className="min-h-screen bg-[#050505] text-white flex items-center justify-center relative overflow-hidden font-sans pt-20 pb-10">
       <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
