@@ -271,8 +271,8 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="min-h-screen bg-[#050505] text-white flex items-center justify-center relative overflow-hidden font-sans pt-20 pb-10">
-      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+    <section className="min-h-screen bg-[#050505] text-white flex items-center justify-center relative overflow-hidden font-sans pt-20 pb-10">
+      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         <div className="flex flex-col items-start text-left space-y-6 order-2 lg:order-1">
@@ -285,7 +285,7 @@ export default function AboutSection() {
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-2">Atharv Khetle</h1>
 
             <div className="h-10 md:h-14 flex items-center overflow-hidden">
-              <span className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00ffcc] to-blue-500">
+              <span className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#00ffcc] to-blue-500">
                 &gt;_ <span className={`transition-opacity duration-500 ease-in-out ${fade ? "opacity-100" : "opacity-0"}`}>{roles[currentRole]}</span>
               </span>
               <span className="w-3 h-8 md:h-10 bg-[#00ffcc] ml-2 animate-pulse" />
@@ -330,7 +330,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="relative w-full h-[400px] md:h-[600px] order-1 lg:order-2 flex items-center justify-center cursor-grab active:cursor-grabbing">
+        <div className="relative w-full h-100 md:h-150 order-1 lg:order-2 flex items-center justify-center cursor-grab active:cursor-grabbing">
           {!isThreeLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-[#00ffcc] font-mono animate-pulse">
               <div className="w-16 h-16 border-4 border-[#00ffcc] border-t-transparent rounded-full animate-spin mb-4" />

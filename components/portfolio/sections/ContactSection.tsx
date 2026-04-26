@@ -532,30 +532,34 @@ export default function ContactSection() {
             </a>
           </div>
 
-          <form ref={htmlFormRef} onSubmit={handleDispatch} className="space-y-4">
+          <form ref={htmlFormRef} onSubmit={handleDispatch} className="space-y-4" suppressHydrationWarning>
             <input
               type="text"
               placeholder="Your Name"
               className="w-full bg-[#111] border border-zinc-800 rounded px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#00f0ff] transition-colors"
               required
+              suppressHydrationWarning
             />
             <input
               type="email"
               placeholder="Your Email"
               className="w-full bg-[#111] border border-zinc-800 rounded px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#00f0ff] transition-colors"
               required
+              suppressHydrationWarning
             />
             <textarea
               placeholder="Message Payload..."
               rows={3}
               className="w-full bg-[#111] border border-zinc-800 rounded px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#00f0ff] transition-colors resize-none"
               required
+              suppressHydrationWarning
             />
 
             <button
               type="submit"
               disabled={formStatus !== "active"}
               className="w-full bg-[#00f0ff]/10 hover:bg-[#00f0ff] disabled:hover:bg-[#00f0ff]/10 text-[#00f0ff] hover:text-[#050505] disabled:hover:text-[#00f0ff] border border-[#00f0ff] disabled:opacity-60 font-bold font-mono uppercase py-3 mt-2 rounded transition-all duration-300 flex justify-center items-center gap-2"
+              suppressHydrationWarning
             >
               <span>{formStatus === "packing" ? "Dispatching..." : "Initialize Dispatch"}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
